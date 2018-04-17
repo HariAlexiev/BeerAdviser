@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class FindBeerActivity extends Activity {
     private BeerExpert beerExpert = new BeerExpert();
 
@@ -21,6 +23,13 @@ public class FindBeerActivity extends Activity {
 
         String beerType = String.valueOf(color.getSelectedItem());
 
-        brands.setText(beerExpert.getBrands(beerType).toString());
+        List<String> brandsList = beerExpert.getBrands(beerType);
+        StringBuilder brandsFormatted = new StringBuilder();
+
+        for(String brand: brandsList) {
+            brandsFormatted.append(brand).append('\n');
+        }
+
+        brands.setText(brandsFormatted);
     }
 }
